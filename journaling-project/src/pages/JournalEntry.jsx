@@ -64,7 +64,7 @@ export default function JournalEntry() {
     };
 
     return (
-        <Box sx={{  minHeight: "100vh", p: 3 }}>
+        <Box sx={{  width: '100vw' }}>
             {/* Date */}
             <Typography variant="body2" color="text.secondary" gutterBottom>
                 {entry.date}

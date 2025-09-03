@@ -1,4 +1,5 @@
 import './App.css'
+import SideNavBar from "../components /SideNavBar.jsx";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -6,7 +7,7 @@ function App() {
   return (
     <>
       <div>
-          hello world
+         <SideNavBar/>
       </div>
     </>
   )

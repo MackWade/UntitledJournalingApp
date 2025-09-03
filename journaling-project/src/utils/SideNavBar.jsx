@@ -19,7 +19,7 @@ export default function SideNavBar() {
     };
 
     const DrawerList = (
-        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ width: 250 }} role="presentation">
             <List>
                 {['journal App', 'Home','journal'].map((text, index) => (
                     <ListItem key={text} disablePadding>

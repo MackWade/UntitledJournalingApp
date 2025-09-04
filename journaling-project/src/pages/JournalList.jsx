@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-    Box,
-    Typography,
-    Fab,
-    Card,
-    CardContent,
-    Button,
-} from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Box, Typography, Fab } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import EntryCard from "../components /EntryCard.jsx";
 
@@ -27,35 +20,49 @@ export default function JournalList() {
     };
 
     return (
-        <Box sx={{ width: '100vw'}}>
-            {/*make the image fixed size when refactoring the design*/}
+        <Box sx={{ 
+            width: '100vw', 
+            p: 0, 
+            m: 0,
+            position: 'relative',
+            minHeight: '100vh'
+        }}>
             <Box
                 component="img"
                 src="src/assets/4186331.jpg"
                 alt="Sample Image"
                 sx={{
                     width: "100%",
-                    height: "20vh",
+                    height: "150px",
                     objectFit: "cover",
-                    mt: -30
+                    objectPosition: "center 30%",
+                    display: "block",
+                    p: 0,
+                    m: 0,
+                    position: "relative",
+                    top: 0,
+                    left: 0
                 }}
             />
 
             <Box
                 sx={{
-                    mx: "auto",
-                    height: "10vh",
+                    height: "auto",
                     width: "95vw",
                     fontWeight: "bold",
                     fontSize: "1.5rem",
                     color: "#484848",
+                    textAlign: "left",
+                    pl: 3,
+                    pt: 2,
+                    pb: 0
                 }}
             >
                 2025
             </Box>
 
             {/* List of entries */}
-            <Box sx={{   mt: -5, p: 2 }}>
+            <Box sx={{ p: 2, mt: -1 }}>
                 <EntryCard entries={entries} />
 
                 {entries.length === 0 && (
@@ -67,11 +74,16 @@ export default function JournalList() {
 
             {/* Floating Add Button */}
             <Fab
-                color="primary"
-                sx={{ position: "fixed", bottom: 24, right: 24 }}
+                sx={{ 
+                    position: "fixed", 
+                    bottom: 24, 
+                    right: 24,
+                    backgroundColor: '#484848',
+                    '&:hover': { backgroundColor: '#484848' }
+                }}
                 onClick={handleAddNew}
             >
-                <AddIcon />
+                <Add sx={{ color: 'white' }} />
             </Fab>
         </Box>
     );

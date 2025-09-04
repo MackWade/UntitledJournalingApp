@@ -1,3 +1,6 @@
+## Presentation link
+
+
 # Galatic Journal App
 
 Galactic Journal is an AI-powered application designed to help those who struggle to maintain a consistent journaling habit, featuring a friendly AI companion named Spacey that guides users by offering suggestions and motivation. The app allows you to easily create, edit, and manage entries while using secure AI analytics to provide weekly progress insights that encourage further reflection. Prioritizing your privacy, all journal data is stored locally on your device, and the AI is carefully designed to only process prompt recommendations while avoiding any sensitive personal topics.

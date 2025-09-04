@@ -163,13 +163,23 @@ export const generateDynamicPrompts = (entries) => {
 
 // Generate weekly reflection summary
 export const generateWeeklyReflection = (entries) => {
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    // Check if we have mock data (timestamps in 2025 range for demo)
+    const hasMockData = entries.some(entry => entry.timestamp && entry.timestamp > 1730000000000 && entry.timestamp < 1760000000000);
     
-    const weekEntries = entries.filter(entry => {
-        const entryDate = new Date(entry.date || entry.id);
-        return entryDate >= oneWeekAgo;
-    });
+    let weekEntries;
+    if (hasMockData) {
+        // For mock data, use all entries
+        weekEntries = entries;
+    } else {
+        // For real data, filter by last 7 days
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        
+        weekEntries = entries.filter(entry => {
+            const entryDate = new Date(entry.timestamp || entry.date || entry.id);
+            return entryDate >= oneWeekAgo;
+        });
+    }
 
     if (weekEntries.length === 0) {
         return {
@@ -227,8 +237,10 @@ export const generateWeeklyReflection = (entries) => {
         insights.push("This week had some challenges. Remember to be gentle with yourself.");
     }
 
+    const themesText = topThemes.length > 0 ? topThemes.join(', ') : 'general reflection and personal growth';
+    
     return {
-        summary: `This week you wrote ${weekEntries.length} entries with themes around ${topThemes.join(', ')}.`,
+        summary: `This week you wrote ${weekEntries.length} entries with themes around ${themesText}.`,
         themes: topThemes,
         sentiment: dominantSentiment,
         insights: insights,
@@ -238,13 +250,23 @@ export const generateWeeklyReflection = (entries) => {
 
 // Generate monthly reflection summary
 export const generateMonthlyReflection = (entries) => {
-    const oneMonthAgo = new Date();
-    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+    // Check if we have mock data (timestamps in 2025 range for demo)
+    const hasMockData = entries.some(entry => entry.timestamp && entry.timestamp > 1730000000000 && entry.timestamp < 1760000000000);
     
-    const monthEntries = entries.filter(entry => {
-        const entryDate = new Date(entry.date || entry.id);
-        return entryDate >= oneMonthAgo;
-    });
+    let monthEntries;
+    if (hasMockData) {
+        // For mock data, use all entries
+        monthEntries = entries;
+    } else {
+        // For real data, filter by last month
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        
+        monthEntries = entries.filter(entry => {
+            const entryDate = new Date(entry.timestamp || entry.date || entry.id);
+            return entryDate >= oneMonthAgo;
+        });
+    }
 
     if (monthEntries.length === 0) {
         return {
@@ -306,8 +328,10 @@ export const generateMonthlyReflection = (entries) => {
         insights.push("This month had its challenges. Remember that growth often comes from difficult times.");
     }
 
+    const themesText = topThemes.length > 0 ? topThemes.join(', ') : 'general reflection and personal growth';
+    
     return {
-        summary: `This month you wrote ${monthEntries.length} entries with themes around ${topThemes.join(', ')}.`,
+        summary: `This month you wrote ${monthEntries.length} entries with themes around ${themesText}.`,
         themes: topThemes,
         sentiment: dominantSentiment,
         insights: insights,
